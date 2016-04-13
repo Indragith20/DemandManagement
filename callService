@@ -1,0 +1,164 @@
+app.service('callService', function($scope) {
+	$rootScope.fieldvalues = {};
+
+					function buildParameterString() {
+						
+						var tempParamString = '$filter=';
+						var queryAppended = false;
+
+						var fieldValues = $rootScope.fieldvalues;
+						console.log("fieldValue", fieldValues)
+												
+						if ($scope.tsg && $scope.tsg != null
+								&& $scope.tsg != '') {
+							var last = $scope.tsg.length;
+							if (queryAppended) {
+								tempParamString = tempParamString + " and ";
+							}
+							tempParamString = tempParamString + "(";
+							for (var i = 0; i < $scope.tsg.length; i++) {
+
+								tempParamString = tempParamString + "(TSG eq '"
+										+ $scope.tsg[i] + "')";
+								if (i + 1 < $scope.tsg.length) {
+									tempParamString = tempParamString + " or ";
+								}								
+								queryAppended = true;
+							}
+							tempParamString = tempParamString + ")";
+						}
+						
+						if ($scope.location && $scope.location != null
+								&& $scope.location != '') {
+							if (queryAppended) {
+								tempParamString = tempParamString + " and ";
+							}
+							
+							tempParamString = tempParamString + "(";
+							for (var i = 0; i < $scope.location.length; i++) {
+								tempParamString = tempParamString
+										+ "(Location eq '" + $scope.location[i]
+										+ "')";
+								if (i + 1 < $scope.location.length) {
+									tempParamString = tempParamString + " or ";
+								}
+								queryAppended = true;
+							}
+							tempParamString = tempParamString + ")";
+
+						}
+
+						if ($scope.selection && $scope.selection != null
+								&& $scope.selection != '') {
+							if (queryAppended) {
+								tempParamString = tempParamString + " and ";
+							}
+							
+							tempParamString = tempParamString + "(";
+							for (var i = 0; i < $scope.selection.length; i++) {
+								tempParamString = tempParamString
+										+ "(Status eq '" + $scope.selection[i]
+										+ "')";
+								if (i + 1 < $scope.selection.length) {
+									tempParamString = tempParamString + " or ";
+								}
+								queryAppended = true;
+							}
+							tempParamString = tempParamString + ")";
+
+						}
+						if ($scope.demand && $scope.demand != null
+								&& $scope.demand != '') {
+							if (queryAppended) {
+								tempParamString = tempParamString + " and ";
+							}
+							
+							tempParamString = tempParamString + "(";
+							for (var i = 0; i < $scope.demand.length; i++) {
+								tempParamString = tempParamString
+										+ "(Demand_x0020_Type eq '" + $scope.demand[i]
+										+ "')";
+								if (i + 1 < $scope.demand.length) {
+									tempParamString = tempParamString + " or ";
+								}
+								queryAppended = true;
+							}
+							tempParamString = tempParamString + ")";
+						}
+
+						return tempParamString;
+					}
+
+
+
+
+
+
+     $scope.submit = function() {
+						$scope.visible=false;
+						console.log($rootScope.fieldvalues.tsg);
+
+						$rootScope.groups = [ {
+							txt : 'Loading..'
+						} ];
+						console.log("$rootScope.fieldvalues",
+								$rootScope.fieldvalues);
+						var paramString = buildParameterString();
+						$rootScope.paramString1=paramString;
+						console.log("paramString", paramString);
+
+						$http(
+								{
+									
+									url : "https://ts.accenture.com/sites/CignaSharepoint/DemandManagement/_api/web/lists/getbytitle('Cigna IT Demands')/items?$top=2000&"
+											+ paramString,
+									type : "GET",
+									headers : {
+										"accept" : "application/json;odata=verbose",
+										
+									}
+								})
+								.then(
+										function(data) {
+											console.log(data);
+											groups = data.data.d.results;
+											
+
+											console.log(groups.length);
+											for (var i = 0; i < groups.length; i++) {
+												delete groups[i]["Attachments"];
+												delete groups[i]["AttachmentFiles"];
+												delete groups[i]["AuthorId"];
+												delete groups[i]["ContentTypeId"];
+												delete groups[i]["Created"];
+												delete groups[i]["EditorId"];
+												delete groups[i]["FileSystemObjectType"];
+												delete groups[i]["GUID"];
+												//                delete groups[i]["ID"];            
+												delete groups[i]["Id"];
+												delete groups[i]["Modified"];
+												delete groups[i]["OData__UIVersionString"];
+												delete groups[i]["RoleAssignments"];
+												delete groups[i]["ContentType"];
+												delete groups[i]["FieldValuesAsHtml"];
+												delete groups[i]["FieldValuesAsText"];
+												delete groups[i]["FieldValuesForEdit"];
+												delete groups[i]["File"];
+												delete groups[i]["FirstUniqueAncestorSecurableObject"];
+												delete groups[i]["Folder"];
+												delete groups[i]["ParentList"];
+												$location.path('/page1');
+											};
+
+											$rootScope.groups = groups;
+											console.log($rootScope.groups);
+										console.log($rootScope.groups.length);
+											if($rootScope.groups.length==0){
+												$scope.visible=true;
+											}
+
+
+										})
+
+					};
+});

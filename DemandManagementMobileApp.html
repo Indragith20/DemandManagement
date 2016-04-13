@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <meta http-equiv="Access-Control-Allow-Origin" content="*" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <script src="../SiteAssets/DemandmanagementTestApp/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <script
+            src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular.js"></script>
+    <script
+            src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular-route.js"></script>
+    <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.7/angular-filter.js"></script>
+    <script src="../SiteAssets/DemandmanagementTestApp/dirPagination.js"></script>
+    <script src="../SiteAssets/DemandmanagementTestApp/script.js"></script>
+    <script src="../SiteAssets/DemandmanagementTestApp/controller.js"></script>
+    <script src="../SiteAssets/DemandmanagementTestApp/loginController.js"></script>
+    <script src="../SiteAssets/DemandmanagementTestApp/insertController.js"></script>
+    <script src="../SiteAssets/DemandmanagementTestApp/profileController.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.8.2/lodash.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.6.0/jszip.min.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/xlsx.js"></script>
+
+    <script type="text/javascript" src="https://rawgit.com/saravanan201320/Regression-Testing-Dashboard/master/js/xlsx-reader.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/xlsx.full.min.js"></script>
+    <script src="https://rawgit.com/saravanan201320/Regression-Testing-Dashboard/master/js/angular-xlsx.js"></script>
+
+
+
+
+
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/prism/0.0.1/prism.min.css">
+<!--     <script type="text/javascript">
+//<![CDATA[
+try{if (!window.CloudFlare) {var CloudFlare=[{verbose:0,p:0,byc:0,owlid:"cf",bag2:1,mirage2:0,oracle:0,paths:{cloudflare:"/cdn-cgi/nexp/dok3v=1613a3a185/"},atok:"5fa32027be173a02612ef9570aff788d",petok:"00551053e3121d3d1acbf172150cab3f0b5f3276-1460457122-1800",zone:"psjinx.com",rocket:"a",apps:{},sha2test:0}];document.write('<script type="text/javascript" src="//ajax.cloudflare.com/cdn-cgi/nexp/dok3v=e982913d31/cloudflare.min.js"><'+'\/script>');}}catch(e){};
+//]]>
+</script> -->
+
+
+
+
+
+
+
+    <style>
+
+        @font-face {
+            font-family: 'AccentureFont';
+            src: url('https://ts.accenture.com/sites/CignaSharepoint/projectdelivery/SiteAssets/VisualDashboard/rotsanl.eot') format('woff'),
+            url('https://ts.accenture.com/sites/CignaSharepoint/projectdelivery/SiteAssets/VisualDashboard/rotsanl.ttf') format('truetype'),
+            url('https://ts.accenture.com/sites/CignaSharepoint/projectdelivery/SiteAssets/VisualDashboard/rotsanl.svg#AccentureRotis') format('svg');
+            font-weight: normal;
+            font-style: normal;
+        }
+        body,
+        span,
+        button,
+        div,
+        p,
+        table,
+        b,
+        a,
+        form {
+            font-family: "AccentureFont";
+        }
+        #s4-titlerow {
+            height: 0 !important;
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+            margin-top: 0 !important;
+            margin-bottom: -10px !important;
+        }
+
+        #contentBox {
+            margin-left: 0;
+            min-width: 0px;
+        }
+
+        .filtermargin
+        {
+            margin-top:10px;
+        }
+        #suiteBar, .ms-cui-tt-span, .ms-tableRow, .ms-webpart-titleText,
+        .ms-core-navigation {
+            display: none;
+        }
+
+        .dropdown-menu {
+            width: 100%;
+        }
+
+        .btn-index {
+            width: 100%;
+        }
+        #loginbox {
+            margin-top: 30px;
+        }
+
+        #loginbox > div:first-child {
+            padding-bottom: 10px;
+        }
+
+        .odd{
+            background-color:#e8eaf6;
+        }
+        .even{
+            background-color:#c5cae9;
+        }
+        .iconmelon {
+            display: block;
+            margin: auto;
+        }
+
+        #form > div {
+            margin-bottom: 25px;
+        }
+
+        #form > div:last-child {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .panel {
+            background-color: transparent;
+        }
+
+        .panel-body {
+            padding-top: 30px;
+            background-color: rgba(2555,255,255,.3);
+        }
+        .btn {
+            padding: 9px 13px;
+            border: 0 none;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .btn:focus, .btn:active:focus, .btn.active:focus {
+            outline: 0 none;
+        }
+
+        .btn-primary {
+            background: #0099cc;
+            color: #ffffff;
+        }
+        .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+            background: #33a6cc;
+        }
+        .btn-primary:active, .btn-primary.active {
+            background: #007299;
+            box-shadow: none;
+        }
+        .dropdownButton{
+            border-style: groove;
+            border-color: #FFF;
+            border-width: 2px;
+        }
+
+        .tableForFilter {
+            table-layout: fixed;
+            width: 100%;
+        }
+
+        .tdForFilter {
+            white-space: nowrap;
+            overflow: hidden;         /* <- this does seem to be required */
+            text-overflow: ellipsis;
+        }
+
+
+        .glyphicon-refresh-animate {
+            -animation: spin .7s infinite linear;
+            -webkit-animation: spin2 .7s infinite linear;
+        }
+
+        @-webkit-keyframes spin2 {
+            from { -webkit-transform: rotate(0deg);}
+            to { -webkit-transform: rotate(360deg);}
+        }
+
+        @keyframes spin {
+            from { transform: scale(1) rotate(0deg);}
+            to { transform: scale(1) rotate(360deg);}
+        }
+
+        .heightForBackButton{
+            height:34px;
+        }
+
+        .tsgDropdownColor
+        {
+            background-color: #c8e6c9;
+        }
+        .locationDropdownColor
+        {
+            background-color: #dcedc8;
+        }
+        .statusDropdownColor
+        {
+            background-color: #f0f4c3;
+        }
+
+        .demadDropdownColor
+        {
+            background-color: #b2ebf2 ;
+        }
+
+        .selected {
+            background-color: #b3e5fc ;
+            list-style-position:inside;
+            border-top: 1px ridge black;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            display: block; !important
+
+        }
+        .unselected {
+            background-color: #ffffff ;
+            list-style-position:inside;
+            border-top: 1px ridge black;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+        .navbar .navbar-nav {
+
+            display: inline-block;
+            float: none;
+        }
+
+        .navbar .navbar-collapse {
+
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2 class="text-center">Cigna On Demand</h2>
+    <div ng-view></div>
+</div>
+
+</body>
+
+<script type="text/ng-template" id="main.html">
+    <div id="loginbox" class="mainbox col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
+        <div class="panel panel-default" >
+            <div class="panel-heading">
+                <div class="panel-title text-center">Login</div>
+            </div>
+
+
+            <div class="panel-body" >
+                <form name="form" id="form" class="form-horizontal">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input id="user" type="text" class="form-control" ng-model="user" name="user" value="" placeholder="User">
+                    </div>
+                    <br/>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        <input id="password" type="password" class="form-control" ng-model="pwd" name="password" placeholder="Password">
+                    </div>
+                    <br/>
+                    <div class="form-group">
+                        <!-- Button -->
+                        <div class="col-sm-12 controls" style="margin-left: 15px;">
+                            <button type="submit" href="#" class="btn btn-primary gradient pull-right" ng-click="login()"><i class="glyphicon glyphicon-log-in"></i> Log in</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</script>
+
+
+
+<script type="text/ng-template" id="loading.html">
+    <div class="text-center">
+   <img src="../SiteAssets/DemandmanagementTestApp/default.gif" />
+   </div>
+</script>
+
+
+
+
+
+
+
+
+
+<script type="text/ng-template" id="profile.html">
+<nav role="navigation" class="navbar navbar-default">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="#" class="navbar-brand">Navigation</a>
+        </div>
+        <!-- Collection of nav links and other content for toggling -->
+        <div id="navbarCollapse" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                 <li><button class="btn btn-default" ng-click="goToInsert()">Insert</button></li>
+                <li><button class="btn btn-default" ng-click="goToFilter()">View</button></li>
+                <li><button class="btn btn-default" ng-click="goToProfile()">Profile</button></li>
+            </ul>
+           
+        </div>
+    </nav>
+    <div id="loginbox" class="mainbox col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
+        <div class="panel panel-default" >
+            <div class="panel-heading">
+                <div class="panel-title text-center">Profile Details</div>
+            </div>
+
+
+            <div class="panel-body" >
+                <p>Your Profile Name is </p><p>{{profiledet}}</p>
+                <button class="btn btn-warning" ng-click="create()">Create Preferences</button>
+                <button class="btn btn-primary glyphicon glyphicon-filter" ng-click="goToFilter()">Filter</button>
+                 <button class="btn btn-danger" ng-click="delete()">Update Preferences</button>
+            </div>
+        </div>
+
+    </div>
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/ng-template" id="insert.html">
+         
+         <nav role="navigation" class="navbar navbar-default">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="#" class="navbar-brand">Navigation</a>
+        </div>
+        <!-- Collection of nav links and other content for toggling -->
+        <div id="navbarCollapse" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                 <li><button class="btn btn-default" ng-click="goToInsert()">Insert</button></li>
+                <li><button class="btn btn-default" ng-click="goToFilter()">View</button></li>
+                <li><button class="btn btn-default" ng-click="goToProfile()">Profile</button></li>
+            </ul>
+           
+        </div>
+    </nav>
+         <form action="" method="post" enctype="multipart/form-data">
+            <div class='form-group'>
+            <label for='excel_file'>Excel File</label>
+            <input type="file" name="excel_file" accept=".xlsx" onchange="angular.element(this).scope().fileChanged(this.files);" required="true">
+            </div>
+            
+            <div ng-show="isProcessing">
+            <span>Processing ...</span>
+            </div>
+            <div class='form-group'>
+            <label for='sheet_name'>Sheet Name</label>
+            <select id="sheet_name" class="form-control" ng-change="updateJSONString()" ng-model="selectedSheetName" required="true" ng-required="true" ng-options="sheetName as sheetName for (sheetName, sheetData) in sheets">
+            <option value="">---- Select a sheet ----</option>
+            </select>
+            </div>
+            <input type="hidden" name="sheet_name" value="{{ selectedSheetName }}">
+            <input type="submit" value="Submit">
+            </form>
+
+
+                
+    
+
+    <!-- <form role="form">
+        <div class="form-group">
+           
+            <input type="text" class="form-control" placeholder="field1" ng-model="name">
+        </div>
+        <div class="form-group">
+             
+            <input type="text" class="form-control" placeholder="field2"  ng-model="roletitle">
+        </div>
+        <div class="form-group">
+            
+            <input type="text" class="form-control" placeholder="field3"  ng-model="jobdesc">
+        </div>
+        <div class="form-group">
+            
+            <input type="text" class="form-control" placeholder="field4"  ng-model="startdate">
+        </div>
+        <div class="form-group">
+            
+            <input type="text" class="form-control" placeholder="field1" ng-model="enddate">
+        </div>
+        <div class="form-group">
+             
+            <input type="text" class="form-control" placeholder="field2"  ng-model="skillcategory">
+        </div>
+        <div class="form-group">
+             <label>Location</label>
+            <input type="text" class="form-control" placeholder="field3"  ng-model="location">
+        </div>
+        <div class="form-group">
+              <label>Level From</label> 
+            <input type="text" class="form-control" placeholder="field4"  ng-model="levelfrom">
+        </div>
+         <div class="form-group">
+             <label>Level TO</label>
+            <input type="text" class="form-control" placeholder="field4"  ng-model="levelto">
+        </div>
+
+
+        <div class="form-group">
+             <label>Client Role Title</label>
+            <input type="text" class="form-control" placeholder="field4"  ng-model="crt">
+        </div>
+
+
+         <div class="form-group">
+             <label>Hiring Manager</label>
+            <input type="text" class="form-control" placeholder="field4"  ng-model="manager">
+        </div>  -->
+
+      <!--   <button type="submit" class="btn btn-danger pull-right " ng-click="addData()">Submit</button>
+    </form> -->
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/ng-template" id="preference.html">
+
+    
+
+     <nav role="navigation" class="navbar navbar-default">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="#" class="navbar-brand">Navigation</a>
+        </div>
+        <!-- Collection of nav links and other content for toggling -->
+        <div id="navbarCollapse" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                 <li><button class="btn btn-default" ng-click="goToInsert()">Insert</button></li>
+                <li><button class="btn btn-default" ng-click="goToFilter()">View</button></li>
+                <li><button class="btn btn-default" ng-click="goToProfile()">Profile</button></li>
+            </ul>
+           
+        </div>
+    </nav>
+
+
+
+
+    <form role="form">
+        <div class="form-group">
+            <div class="col-xs-12 filtermargin">
+                <div class="dropdown">
+                    <button class="btn dropdownButton dropdown-toggle btn-index tsgDropdownColor" type="button"
+                            data-toggle="dropdown">
+                        <span ng-hide="filterTSG" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+                        <span ng-hide="filterTSG">Loading</span> <span ng-show="filterTSG">TSG </span> <span ng-show="filterTSG" class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" ng-click="showList($event)">
+                        <li ng-repeat="TSG in filterTSG" ng-click="toggleTsg(TSG)" ng-class="{true:'glyphicon glyphicon-ok selected', false:'unselected'}[tsg.indexOf(TSG) > -1]">
+                            <span>{{TSG}}</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xs-12 filtermargin">
+                <div class="dropdown ">
+                    <button class="btn dropdownButton dropdown-toggle btn-index locationDropdownColor" type="button"
+                            data-toggle="dropdown">
+                        <span ng-hide="filterLocation" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+                        <span ng-hide="filterLocation">Loading</span>
+                        <span ng-show="filterLocation">Location </span>
+                        <span ng-show="filterLocation" class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" ng-click="showList($event)">
+                        <li ng-repeat="Location in filterLocation" ng-click="toggleLocation(Location)" ng-class="{true:'glyphicon glyphicon-ok selected', false:'unselected'}[location.indexOf(Location) > -1]">
+                            <span> {{Location}}</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xs-12 filtermargin">
+                <div class="dropdown">
+                    <button class="btn dropdownButton dropdown-toggle btn-index statusDropdownColor" type="button"
+                            data-toggle="dropdown">
+                        <span ng-hide="filterStatus" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+                        <span ng-hide="filterStatus">Loading</span>
+                        <span ng-show="filterStatus">Status</span>
+                        <span ng-show="filterStatus" class="caret"></span>
+
+                    </button>
+                    <ul class="dropdown-menu" ng-click="showList($event)">
+                        <li ng-repeat="status in filterStatus" ng-click="toggleSelection(status)" ng-class="{true:'glyphicon glyphicon-ok selected', false:'unselected'}[selection.indexOf(status) > -1]">
+                            <span>{{status}}</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xs-12 filtermargin">
+                <div class="dropdown">
+                    <button class="btn dropdownButton dropdown-toggle btn-index demadDropdownColor" type="button"
+                            data-toggle="dropdown">
+                        <span ng-hide="filterDemand" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+                        <span ng-hide="filterDemand">Loading</span>
+                        <span ng-show="filterDemand">Demand Confidence</span>
+                        <span ng-show="filterDemand" class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" ng-click="showList($event)">
+                        <li ng-repeat="demandd in filterDemand" ng-click="toggleDemand(demandd)" ng-class="{true:'glyphicon glyphicon-ok selected', false:'unselected'}[demand.indexOf(demandd) > -1]">
+                            <span>{{demandd}}</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 filtermargin">
+            <button class="btn btn-info dropdownButton pull-right" type="button"
+                    ng-click="submitPreferences()">Set Preferences</button>
+            <!-- <button class="btn btn-danger dropdownButton pull-right" type="button"
+                    ng-click="reset()">Reset</button> -->
+        </div>
+        <br/>
+           </form>
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/ng-template" id="filter.html">
+
+    <nav role="navigation" class="navbar navbar-default">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="#" class="navbar-brand">Navigation</a>
+        </div>
+        <!-- Collection of nav links and other content for toggling -->
+        <div id="navbarCollapse" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><button class="btn btn-default" ng-click="goToInsert()">Insert</button></li>
+                <li><button class="btn btn-default" ng-click="goToFilter()">View</button></li>
+                <li><button class="btn btn-default" ng-click="goToProfile()">Profile</button></li>
+            </ul>
+           
+        </div>
+    </nav>
+
+    <form role="form">
+        <div class="form-group">
+            <div class="col-xs-12 filtermargin">
+                <div class="dropdown">
+                    <button class="btn dropdownButton dropdown-toggle btn-index tsgDropdownColor" type="button"
+                            data-toggle="dropdown">
+                        <span ng-hide="filterTSG" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+                        <span ng-hide="filterTSG">Loading</span> <span ng-show="filterTSG">TSG </span> <span ng-show="filterTSG" class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" ng-click="showList($event)">
+                        <li ng-repeat="TSG in filterTSG" ng-click="toggleTsg(TSG)" ng-class="{true:'glyphicon glyphicon-ok selected', false:'unselected'}[tsg.indexOf(TSG) > -1]">
+                            <span>{{TSG}}</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xs-12 filtermargin">
+                <div class="dropdown ">
+                    <button class="btn dropdownButton dropdown-toggle btn-index locationDropdownColor" type="button"
+                            data-toggle="dropdown">
+                        <span ng-hide="filterLocation" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+                        <span ng-hide="filterLocation">Loading</span>
+                        <span ng-show="filterLocation">Location </span>
+                        <span ng-show="filterLocation" class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" ng-click="showList($event)">
+                        <li ng-repeat="Location in filterLocation" ng-click="toggleLocation(Location)" ng-class="{true:'glyphicon glyphicon-ok selected', false:'unselected'}[location.indexOf(Location) > -1]">
+                            <span> {{Location}}</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xs-12 filtermargin">
+                <div class="dropdown">
+                    <button class="btn dropdownButton dropdown-toggle btn-index statusDropdownColor" type="button"
+                            data-toggle="dropdown">
+                        <span ng-hide="filterStatus" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+                        <span ng-hide="filterStatus">Loading</span>
+                        <span ng-show="filterStatus">Status</span>
+                        <span ng-show="filterStatus" class="caret"></span>
+
+                    </button>
+                    <ul class="dropdown-menu" ng-click="showList($event)">
+                        <li ng-repeat="status in filterStatus" ng-click="toggleSelection(status)" ng-class="{true:'glyphicon glyphicon-ok selected', false:'unselected'}[selection.indexOf(status) > -1]">
+                            <span>{{status}}</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xs-12 filtermargin">
+                <div class="dropdown">
+                    <button class="btn dropdownButton dropdown-toggle btn-index demadDropdownColor" type="button"
+                            data-toggle="dropdown">
+                        <span ng-hide="filterDemand" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+                        <span ng-hide="filterDemand">Loading</span>
+                        <span ng-show="filterDemand">Demand Confidence</span>
+                        <span ng-show="filterDemand" class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" ng-click="showList($event)">
+                        <li ng-repeat="demandd in filterDemand" ng-click="toggleDemand(demandd)" ng-class="{true:'glyphicon glyphicon-ok selected', false:'unselected'}[demand.indexOf(demandd) > -1]">
+                            <span>{{demandd}}</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 filtermargin">
+            <button class="btn btn-info dropdownButton pull-right" type="button"
+                    ng-click="submit()">Submit</button>
+            <button class="btn btn-danger dropdownButton pull-right" type="button"
+                    ng-click="reset()">Reset</button>
+        </div>
+        <br/>
+        <div ng-show="visible" style="color:red;" class="text-center">Sorry No Records Found..!Please Try Again</div>
+
+        </div>
+    </form>
+
+</script>
+
+<script type="text/ng-template" id="page1.html">
+    <div class="container">
+        <div class="col-xs-12">
+            <div class="row">
+                <div class="col-xs-4 filtermargin">
+                    <button class="btn btn-primary heightForBackButton glyphicon glyphicon-filter" ng-click="backToMainPage()" style="padding-top: 5px; !important">Filter</button>
+                </div>
+                <div class="col-xs-8 filtermargin">
+                    <input class="form-control" placeholder="Search" type="text" ng-model="searchFilter">
+                </div>
+            </div>
+            <div class="table-responsive filtermargin">
+                <table class="table tableForFilter" >
+                    <thead>
+                    <tr>
+
+                        <th>Role Title</th>
+                        <th>Location</th>
+                        <th>Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr dir-paginate="group in groups | filter:searchFilter |itemsPerPage:10 " ng-click="tableClicked(group.ID)" ng-class-odd="'odd'" ng-class-even="'even'">
+                        <td class="tdForFilter">{{group.Role_x0020_Title}}</td>
+                        <td >{{group.Location}}</td>
+                        <td >{{group.Status}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="text-center">
+                <dir-pagination-controls
+                        max-size="5"
+                        direction-links="true"
+                        boundary-links="false"
+                        class="pagination-sm">
+                </dir-pagination-controls>
+            </div>
+
+        </div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="page2.html">
+
+    <div ng-controller="myController">
+        <div class="container">
+            <button class="btn btn-primary heightForBackButton glyphicon glyphicon-arrow-left" ng-click="backBtn()" style="padding-top: 5px;"></button>
+            <table class="table filtermargin">
+
+                <tbody>
+                <tr class="odd">
+                    <td>Role Title</td>
+                    <td class="span2">{{page2Data[0].Role_x0020_Title}}</td>
+                </tr>
+                <tr class="even">
+                    <td>Status</td>
+                    <td class="span2">{{page2Data[0].Status}}</td>
+                </tr>
+                <tr class="odd">
+                    <td>Location</td>
+                    <td class="span2">{{page2Data[0].Location}}</td>
+                </tr>
+
+               <!-- <tr class="even">
+                    <td>Demand Type</td>
+                    <td class="span2">{{page2Data[0].Demand_x0020_Type}}</td>
+                </tr>
+                <tr class="odd">
+                    <td>Role Title</td>
+                    <td class="span2">{{page2Data[0].Role_x0020_Title}}</td>
+                </tr>
+                <tr class="even">
+                    <td>My Sid</td>
+                    <td class="span2">{{page2Data[0].myS_x0020_Id}}</td>
+                </tr>-->
+                <tr class="even">
+                    <td>RRD</td>
+                    <td class="span2">{{page2Data[0].RRD}}</td>
+                </tr>
+                <tr class="odd" >
+                    <td>At Risk</td>
+                    <td class="span1">{{page2Data.At_x0020_Risk}}</td>
+                </tr>
+
+                <tr class="even">
+                    <td>Start Date</td>
+                    <td class="span2">{{page2Data[0].Start_x0020_Date | date}}</td>
+
+                </tr>
+
+              <tr class="odd">
+                    <td>Skill Category</td>
+                    <td class="span2">{{page2Data[0].Skill_x0020_Category}}</td>
+
+                </tr>
+               <!-- <tr class="odd">
+                    <td>Job Description</td>
+                    <td class="span2">{{page2Data[0].Job_x0020_Description}}</td>
+
+                </tr>-->
+                <tr class="even">
+                    <td>Comments</td>
+                    <td class="span2">{{page2Data[0].Comments}}</td>
+
+                </tr>
+                <!--<tr class="odd">
+                    <td>Demand Confidence</td>
+                    <td class="span2">{{page2Data[0].Demand_x0020_Confidence}}</td>
+                </tr>-->
+                </tbody>
+            </table>
+            <button class="btn btn-primary heightForBackButton glyphicon glyphicon-arrow-left" ng-click="backBtn()" style="padding-top: 5px;"></button>
+
+        </div>
+    </div>
+</script>
+
+
+
+
+</html>

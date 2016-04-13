@@ -1,0 +1,94 @@
+
+
+<form role="form">
+	<div class="form-group">
+		<div class="col-xs-12">
+			<label>TSG</label>
+
+			<div class="dropdown ">
+				<button class="btn btn-primary dropdown-toggle btn-index" style="background-color:#e7e7e7" type="button"
+					data-toggle="dropdown">
+					TSG <span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu">
+					<li ng-repeat="TSG in filterTSG"><span> <input
+							id="{{TSG}}" type="checkbox" value="{{TSG}}"
+							ng-checked="tsg.indexOf(TSG) > -1" ng-click="toggleTsg(TSG)">
+							{{TSG}}
+					</span></li>
+				</ul>
+			</div>
+		</div>
+		<br />
+
+		<div class="col-xs-12">
+			<label>Location</label>
+
+			<div class="dropdown ">
+				<button class="btn btn-primary dropdown-toggle btn-index" type="button" style="background-color:#e7e7e7"
+					data-toggle="dropdown">
+					Location <span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu ">
+					<li ng-repeat="Location in filterLocation"><span> <input
+							id="{{Location}}" type="checkbox" value="{{Location}}"
+							ng-checked="location.indexOf(Location) > -1"
+							ng-click="toggleLocation(Location)"> {{Location}}
+					</span></li>
+				</ul>
+			</div>
+		</div>
+		<br />
+		<div class="col-xs-12 ">
+			<label>Status</label>
+			<!-- <input type="text" class="form-control" ng-model="fieldvalues.status"> -->
+			<div class="dropdown">
+				<button class="btn btn-primary dropdown-toggle btn-index" type="button" style="background-color:#e7e7e7"
+					data-toggle="dropdown">
+					Status <span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu">
+					<li ng-repeat="status in filterStatus"><span> <input
+							id="{{status}}" type="checkbox" value="{{status}}"
+							ng-checked="selection.indexOf(status) > -1"
+							ng-click="toggleSelection(status)"> {{status}}
+					</span></li>
+				</ul>
+				<!-- <p>{{selection}}</p> -->
+
+
+			</div>
+		</div>
+		<br />
+		<div class="col-xs-12">
+			<label>Demand Type</label>
+			<!-- <input type="text" class="form-control" ng-model="fieldvalues.status"> -->
+			<div class="dropdown">
+				<button class="btn btn-primary dropdown-toggle btn-index" type="button" style="background-color:#e7e7e7"
+					data-toggle="dropdown">
+					Demand Type <span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu">
+					<li ng-repeat="demand in filterDemand"><span> <input
+							id="{{demand}}" type="checkbox" value="{{demand}}"
+							ng-checked="selection.indexOf(demand) > -1"
+							ng-click="toggleDemand(demand)"> {{demand}}
+					</span></li>
+				</ul>
+				<!-- <p>{{selection}}</p> -->
+
+
+			</div>
+		</div>
+	</div>
+	<br />
+	<div class="col-xs-12">	
+		<a href="#page1" class="btn btn-info pull-right"
+			ng-click="submit()">Submit</a>
+	</div>
+	<div class="col-xs-6"></div>
+</div>
+</form>
+
+
+

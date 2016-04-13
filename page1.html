@@ -1,0 +1,40 @@
+<div class="container">
+		<div class="col-xs-12">
+			<button class="btn btn-primary" ng-click="backToMainPage()"><span class="glyphicon glyphicon-arrow-left"></span></button>
+			<input type="text" ng-model="searchFilter">
+			<div class="table-responsive">
+				<table class="table" >
+					<thead>
+						<tr>
+							
+							<th>Role Title</th>
+							<th>Start Date</th>
+							<th>End Date</th>
+							<th>My Sid</th>
+							<th>RRD</th>
+						</tr>
+					</thead>
+					<tbody>  
+						<tr dir-paginate="group in groups | filter:searchFilter |  itemsPerPage:10 " ng-class-odd="'odd'" ng-class-even="'even'">							
+							<td class="span1">{{group.Client_x0020_Role_x0020_Title}}</td>
+							<td class="span5">{{group.Start_x0020_Date | date }}</td>
+							<td class="span2">{{group.End_x0020_Date | date}}</td>
+							<td class="span2">{{group.myS_x0020_Id}}</td>
+							<td class="span4">{{group.RRD}} 
+								<a href="#page2" ng-click="tableClicked(group.ID)">
+									<span class="glyphicon glyphicon glyphicon-option-horizontal"></span>
+								</a>
+							</td>
+							
+						</tr>
+					</tbody>
+				</table>
+				<dir-pagination-controls style="float: right"
+                                 max-size="5"
+                                 direction-links="true"
+                                 boundary-links="true">
+        		</dir-pagination-controls>
+				
+			</div>
+		</div>
+	</div>

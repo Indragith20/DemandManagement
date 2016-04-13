@@ -1,0 +1,94 @@
+
+<body ng-controller="myController">
+	<div class="container">
+
+		<button class="btn btn-primary" ng-click="backBtn()"><span class="glyphicon glyphicon-arrow-left"></span></button>
+		<table class="table">
+			
+			<tbody>
+			<!-- ng-repeat="group in page2Data[0]" ng-if="$index > 0" -->
+				<tr>
+					<td>At Risk</td>
+					<td class="span1">{{page2Data.At_x0020_Risk}}</td>
+				</tr>
+				<tr>
+					<td>Role Title</td>
+					<td class="span5">{{page2Data[0].Client_x0020_Role_x0020_Title}}</td>
+				</tr>
+				<tr>
+					<td>Status</td>
+					<td class="span2">{{page2Data[0].Status}}</td>
+				</tr>				
+				<tr>
+					<td>Location</td>
+					<td class="span2">{{page2Data[0].Location}}</td>
+					
+				</tr>
+				<tr>
+					<td>Start Date</td>
+					<td class="span2">{{page2Data[0].Start_x0020_Date | date}}</td>
+					
+				</tr>
+				<tr>
+					<td>myS Id</td>
+					<td class="span2">{{page2Data[0].myS_x0020_Id}}</td>
+					
+				</tr>
+				<tr>
+					<td>RRD</td>
+					<td class="span2">{{page2Data[0].RRD}}</td>
+					
+				</tr>
+				<tr>
+					<td>Skill Category</td>
+					<td class="span2">{{page2Data[0].Skill_x0020_Category}}</td>
+					
+				</tr>
+				<tr>
+					<td>Job Description</td>
+					<td class="span2">{{page2Data[0].Job_x0020_Description}}</td>
+					
+				</tr>
+				<tr>
+					<td>Comments</td>
+					<td class="span2">{{page2Data[0].Comments}}</td>
+					
+				</tr>
+				<tr>
+					<td>Demand Confidence</td>
+					<td class="span2">{{page2Data[0].Demand_x0020_Confidence}}</td>
+				</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+				</tr>
+			</tbody>
+		</table>		
+		<!-- <table class="table">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Value</th>
+				</tr>
+			</thead>
+			<tbody>
+			
+				<tr ng-repeat="(key, value) in page2Data[0]" ng-if="$index > 0" ng-class-odd="'odd'" ng-class-even="'even'">
+					<td>{{key}}</td>
+					<td>{{value}}</td>
+					
+				</tr>
+			</tbody>
+		</table> -->
+	</div>
+</body>
